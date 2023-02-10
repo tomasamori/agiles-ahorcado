@@ -19,7 +19,7 @@ namespace Ahorcado.MVC.Pages
         public void OnGet()
         {
             string url = Microsoft.AspNetCore.Http.Extensions.UriHelper.GetDisplayUrl(Request);
-            AhorcadoJuego.Inicializar();
+            AhorcadoJuego.Inicializar("AGILES"); // Fuerza palabra "AGILES" para testear victoria
         }
 
         public void OnPostLetra() 
