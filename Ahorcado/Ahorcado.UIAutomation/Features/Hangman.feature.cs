@@ -75,14 +75,14 @@ namespace Ahorcado.UIAutomation.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Lose the game")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public virtual void LoseTheGame()
+        [NUnit.Framework.DescriptionAttribute("Lose the game letter by letter")]
+        [NUnit.Framework.CategoryAttribute("partida")]
+        public virtual void LoseTheGameLetterByLetter()
         {
             string[] tagsOfScenario = new string[] {
-                    "mytag"};
+                    "partida"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Lose the game", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Lose the game letter by letter", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -104,9 +104,12 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.When("I enter X as the typedLetter seven times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("The word to guess \'AGILES\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
+ testRunner.When("I enter X as the LetraIngresada seven times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 10
  testRunner.Then("I should be told that I lost", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

@@ -2,15 +2,16 @@ using Ahorcado.Clase;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Security.Policy;
 
 namespace Ahorcado.UIAutomation.StepDefinitions
 {
     [Binding]
     public sealed class HangmanStepDefinitions
     {
-        IWebDriver driver;
-        String baseURL;
-        AhorcadoClase partida = AhorcadoJuego.GetPartidaActual;
+        IWebDriver? driver;
+        String? baseURL;
+        AhorcadoClase? Partida;
 
         [BeforeScenario]
         public void TestInitialize()
@@ -20,29 +21,33 @@ namespace Ahorcado.UIAutomation.StepDefinitions
             baseURL = "https://localhost:44306/";
         }
 
-        [When(@"I enter X as the typedLetter seven times")]
+        [Given(@"The word to guess '(.*)'")]
+        public void GivenTheWordToGuess(string p0)
+        {
+            Partida = new AhorcadoClase("AGILES", 7);
+            driver.Navigate().GoToUrl(baseURL);
+            Thread.Sleep(1000);
+        }
+
+        [When(@"I enter X as the LetraIngresada seven times")]
         public void WhenIEnterXAsTheTypedLetterSevenTimes()
         {
-            driver.Navigate().GoToUrl(baseURL);
-            Thread.Sleep(5000);
             for (int i = 0; i < 7; i++)
             {
                 var letterTyped = driver.FindElement(By.Id("inputletter"));
                 var btnInsertLetter = driver.FindElement(By.Id("IntentarLetra"));
                 letterTyped.SendKeys("X");
                 Thread.Sleep(1000);
-                btnInsertLetter.SendKeys(Keys.Enter);
+                btnInsertLetter.Click();
             }
         }
 
         [Then(@"I should be told that I lost")]
         public void ThenIShouldBeToldThatILost()
         {
-            
-            var loss = partida.getVida() == 0;
-            Thread.Sleep(1000);
-            Assert.IsTrue(loss);
-            Thread.Sleep(1000);
+
+            var LabelGanar = driver.FindElement(By.Id("lost"));
+            Assert.AreEqual(LabelGanar.Text, "¡Perdiste!");
         }
 
         [AfterScenario]
