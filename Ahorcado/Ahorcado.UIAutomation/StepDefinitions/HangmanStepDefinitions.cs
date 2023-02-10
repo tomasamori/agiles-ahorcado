@@ -107,16 +107,6 @@ namespace Ahorcado.UIAutomation.StepDefinitions
             btnInsertLetter.Click();
         }
 
-        [When(@"I entered 'AGILES' as the PalabraIngresada")]
-        public void WhenIEnteredAGILESAsThePalabraIngresada()
-        {
-            var wordTyped = driver.FindElement(By.Id("inputletter"));
-            var btnInsertLetter = driver.FindElement(By.Id("IntentarLetra"));
-
-            wordTyped.SendKeys("AGILES");
-            btnInsertLetter.Click();
-        }
-
         [Then(@"I should be told that I won the game")]
         public void ThenIShouldBeToldThatIWonTheGame()
         {
