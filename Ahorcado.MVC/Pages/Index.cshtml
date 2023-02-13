@@ -13,10 +13,75 @@
     AhorcadoClase partida = AhorcadoJuego.GetPartidaActual;
 }
 
-<div class="text-center">
-    
-    <div class="row mt-5">
-        <div class="column mr-5">
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            @if (partida.getVida() > 0)
+            {
+                if (!partida.estadoPalabra.Contains('_'))
+                {
+                    <div class="column col-lg-7 hide">
+                        <h2 id="win" class="mt-2">¡Ganaste!</h2>
+                        <h3 class="mt-4 mb-3">La palabra adivinada es</h3>
+                        <div class="d-inline p-2 bg-success text-white">@partida.getPalabra()</div>
+                    </div>
+                }
+
+                else
+                {
+                    <div class="column col-lg-7">
+                        <h3 class="mt-4 mb-3">Palabra a adivinar</h3>
+                        @foreach (char c in partida.estadoPalabra)
+                        {
+                            <div class="d-inline p-2 bg-dark text-white">@c </div>
+                        }
+                        <h3 class="mt-5 mb-3">Letras Acertadas</h3>
+                        @if (partida.letrasCorrectas.Any())
+                        {
+                            foreach (char l in partida.letrasCorrectas)
+                            {
+                                <div class="d-inline p-2 bg-info text-white">@l</div>
+                            }
+                        }
+
+                        <h3 class="mt-3 mb-3">Letras incorrectas</h3>
+                        @if (partida.letrasIncorrectas.Any())
+                        {
+                            foreach (char l in partida.letrasIncorrectas)
+                            {
+                                <div class="d-inline p-2 bg-danger text-white">@l</div>
+                            }
+                        }
+
+                        <div>
+                            <form class="row g-3 mt-3" asp-page-handler="letra" method="post">
+                                <div class="col-auto">
+                                    <label for="letter" class="visually-hidden">Ingrese una letra:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input name="LetraIngresada" type="text" class="form-control" id="inputletter" placeholder="" maxlength="1" required>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" id="IntentarLetra" class="btn btn-primary mb-2">Intentar Letra</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="column col-lg-7">
+                    <h2 id="lost" class="mt-5">¡Perdiste!</h2>
+                    <h3 class="mt-4 mb-3">La palabra a adivinar era</h3>
+                    <div class="d-inline p-2 bg-danger text-white">@partida.getPalabra()</div>
+                    <form class="mt-5" method="post">
+                        <button type="submit" class="btn btn-primary mb-2 mt-3 block">Volver a intentar</button>
+                    </form>
+                </div>
+            }
+        </div>
+        <div class="col-sm">
             @if (partida.getVida() == 7)
             {
                 <img id="imagen" src="./assets/0.png">
@@ -50,68 +115,5 @@
                 <img id="imagen" src="./assets/7.png">
             }
         </div>
-
-        @if (partida.getVida() > 0)
-        {
-            if (!partida.estadoPalabra.Contains('_'))
-            {
-                <div class="column col-lg-7 hide">
-                    <h2 id="win" class="mt-2">¡Ganaste!</h2>
-                    <h3 class="mt-4 mb-3">La palabra adivinada es</h3>
-                    <div class="d-inline p-2 bg-success text-white">@partida.getPalabra()</div>
-                </div>
-            }
-
-            else
-            {
-                <div class="column col-lg-7">
-                    <h3 class="mt-4 mb-3">Palabra a adivinar</h3>
-                        <div class="d-inline p-2 bg-dark text-white">@partida.estadoPalabra</div>
-                    <h3 class="mt-5 mb-3">Letras Acertadas</h3>
-                    @if (partida.letrasCorrectas.Any())
-                    {
-                        foreach (char l in partida.letrasCorrectas)
-                        {
-                            <div class="d-inline p-2 bg-info text-white">@l</div>
-                        }
-                    }
-
-                    <h3 class="mt-3 mb-3">Letras incorrectas</h3>
-                    @if (partida.letrasIncorrectas.Any())
-                    {
-                        foreach (char l in partida.letrasIncorrectas)
-                        {
-                            <div class="d-inline p-2 bg-danger text-white">@l</div>
-                        }
-                    }
-
-                    <div>
-                        <form class="row g-3 mt-3" asp-page-handler="letra" method="post">
-                            <div class="col-auto">
-                                <label for="letter" class="visually-hidden">Ingrese una letra:</label>
-                            </div>
-                            <div class="col-auto">
-                                <input name="LetraIngresada" type="text" class="form-control" id="inputletter" placeholder="" maxlength="1" required>
-                            </div>
-                            <div class="col-auto">
-                                <button type="submit" id="IntentarLetra" class="btn btn-primary mb-2">Intentar Letra</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <div class="column col-lg-7">
-                <h2 id="lost" class="mt-5">¡Perdiste!</h2>
-                <h3 class="mt-4 mb-3">La palabra a adivinar era</h3>
-                <div class="d-inline p-2 bg-danger text-white">@partida.getPalabra()</div>
-                <form class="mt-5" method="post">
-                    <button type="submit" class="btn btn-primary mb-2 mt-3 block">Volver a intentar</button>
-                </form>
-            </div>
-        }
     </div>
-
 </div>
