@@ -10,10 +10,6 @@ jobs:
     name: Build and analyze
     runs-on: windows-latest
     steps:
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1.1.0
-        with:
-          chrome-version: '109.0.5414.74'
       - name: Setup chromedriver
         uses: nanasess/setup-chromedriver@v1
         with:
