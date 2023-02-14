@@ -34,7 +34,7 @@ namespace Ahorcado.UIAutomation.StepDefinitions
                 var btnInsertLetter = driver.FindElement(By.Id("IntentarLetra"));
                 letterTyped.SendKeys("X");
                 Thread.Sleep(1000);
-                btnInsertLetter.Click();
+                btnInsertLetter.Submit();
             }
         }
 
@@ -52,7 +52,7 @@ namespace Ahorcado.UIAutomation.StepDefinitions
             var btnInsertLetter = driver.FindElement(By.Id("IntentarLetra"));
             letterTyped.SendKeys("A");
             Thread.Sleep(1000);
-            btnInsertLetter.Click();
+            btnInsertLetter.Submit();
         }
 
         [When(@"I entered G as the LetraIngresada")]
@@ -62,7 +62,7 @@ namespace Ahorcado.UIAutomation.StepDefinitions
             var btnInsertLetter = driver.FindElement(By.Id("IntentarLetra"));
             letterTyped.SendKeys("G");
             Thread.Sleep(1000);
-            btnInsertLetter.Click();
+            btnInsertLetter.Submit();
         }
 
         [When(@"I entered I as the LetraIngresada")]
@@ -72,7 +72,7 @@ namespace Ahorcado.UIAutomation.StepDefinitions
             var btnInsertLetter = driver.FindElement(By.Id("IntentarLetra"));
             letterTyped.SendKeys("I");
             Thread.Sleep(1000);
-            btnInsertLetter.Click();
+            btnInsertLetter.Submit();
         }
 
         [When(@"I entered L as the LetraIngresada")]
@@ -82,7 +82,7 @@ namespace Ahorcado.UIAutomation.StepDefinitions
             var btnInsertLetter = driver.FindElement(By.Id("IntentarLetra"));
             letterTyped.SendKeys("L");
             Thread.Sleep(1000);
-            btnInsertLetter.Click();
+            btnInsertLetter.Submit();
         }
 
         [When(@"I entered E as the LetraIngresada")]
@@ -92,7 +92,7 @@ namespace Ahorcado.UIAutomation.StepDefinitions
             var btnInsertLetter = driver.FindElement(By.Id("IntentarLetra"));
             letterTyped.SendKeys("E");
             Thread.Sleep(1000);
-            btnInsertLetter.Click();
+            btnInsertLetter.Submit();
         }
 
         [When(@"I entered S as the LetraIngresada")]
@@ -102,7 +102,7 @@ namespace Ahorcado.UIAutomation.StepDefinitions
             var btnInsertLetter = driver.FindElement(By.Id("IntentarLetra"));
             letterTyped.SendKeys("S");
             Thread.Sleep(1000);
-            btnInsertLetter.Click();
+            btnInsertLetter.Submit();
         }
 
         [Then(@"I should be told that I won the game")]
