@@ -58,8 +58,8 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'testagilesahorcado'
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_53E55C7EECE44520985899A8B5D7A22E }}
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9327175A9C884A8E805D8D2603999CD5 }}
           package: .
   
   ui_tests:
