@@ -10,7 +10,7 @@ namespace Ahorcado.UIAutomation.StepDefinitions
     public sealed class HangmanStepDefinitions
     {
         IWebDriver driver = new ChromeDriver();
-        String baseURL = "https://agilesahorcado.azurewebsites.net/";
+        String baseURL = "https://testagilesahorcado.azurewebsites.net/";
 
         [BeforeScenario]
         public void TestInitialize()
