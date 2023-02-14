@@ -29,7 +29,7 @@ jobs:
         run: dotnet build --configuration Release
         
       - name: Unit Test
-        run: dotnet test Ahorcado.Test\bin\Debug\net6.0\Ahorcado.Test.dll --logger:"console;verbosity=normal"
+        run: dotnet test D:\a\agiles-ahorcado\agiles-ahorcado\Ahorcado.Test\bin\Release\net6.0\Ahorcado.Test.dll --logger:"console;verbosity=normal"
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
@@ -72,7 +72,7 @@ jobs:
         run: dotnet build --configuration Release
         
       - name: UI Test
-        run: dotnet test Ahorcado.UIAutomation\bin\Debug\net6.0\Ahorcado.UIAutomation.dll --logger:"console;verbosity=normal"
+        run: dotnet test D:\a\agiles-ahorcado\agiles-ahorcado\Ahorcado.UIAutomation\bin\Release\net6.0\Ahorcado.UIAutomation.dll --logger:"console;verbosity=normal"
       
   deploy:
     runs-on: windows-latest
