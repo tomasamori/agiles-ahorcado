@@ -16,6 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.1.1
+        
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
@@ -24,6 +27,9 @@ jobs:
 
       - name: Build with dotnet
         run: dotnet build --configuration Release
+        
+      - name: Unit Test
+        run: dotnet test Ahorcado.Test\bin\Debug\net6.0\Ahorcado.Test.dll --logger:"console;verbosity=normal"
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
@@ -34,7 +40,7 @@ jobs:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
 
-  deploy:
+  deploy_to_test:
     runs-on: windows-latest
     needs: build
     environment:
@@ -47,6 +53,40 @@ jobs:
         with:
           name: .net-app
 
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'testagilesahorcado'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_53E55C7EECE44520985899A8B5D7A22E }}
+          package: .
+  
+  ui_tests:
+    runs-on: windows-latest
+    needs: deploy_to_test
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+        
+      - name: UI Test
+        run: dotnet test Ahorcado.UIAutomation\bin\Debug\net6.0\Ahorcado.UIAutomation.dll --logger:"console;verbosity=normal"
+      
+  deploy:
+    runs-on: windows-latest
+    needs: ui_tests
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: .net-app
+      
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
