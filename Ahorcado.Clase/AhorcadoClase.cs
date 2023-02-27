@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using static Ahorcado.Clase.AhorcadoClase;
 
 namespace Ahorcado.Clase
 {
@@ -9,12 +10,15 @@ namespace Ahorcado.Clase
         public List<char> letrasCorrectas;
         public List<char> letrasIncorrectas;
         public string estadoPalabra;
+        public enum Estados { Jugando, Ganada, Perdida }
+        public Estados estado { get; set; }
 
         public AhorcadoClase(string palabra, int vida)
         {
             this.palabra = palabra.ToLower();
             this.vida = vida;
             this.estadoPalabra = "";
+            this.estado = Estados.Jugando;
             for (int i = 0; i < this.palabra.Length; i++)
             {
                 this.estadoPalabra += "_";
@@ -49,13 +53,18 @@ namespace Ahorcado.Clase
                         }
 
                     }
+                    if (String.Equals(this.palabra, this.estadoPalabra.ToLower()))
+                    {
+                        this.estado = Estados.Ganada;
+                        return "Ganada";
+                    }
                 }
 
                 else return "La letra ya fue ingresada";
 
                 if (cont == 0)
                 {
-                    this.vida = this.vida - 1;
+                    this.vida--;
                     this.letrasIncorrectas.Add(letra);
                     return "Letra incorrecta";
                 }
@@ -77,16 +86,19 @@ namespace Ahorcado.Clase
             return this.vida;
         }
 
-        public bool ValidarPalabra()
+        public bool ValidarPalabra(string palabra)
         {
-            foreach (var letra in this.palabra.ToCharArray())
+            if (String.Equals(this.palabra, palabra.ToLower()))
             {
-                if (!this.letrasCorrectas.Contains(Char.ToLower(letra)))
-                {
-                    return false;
-                }
+                this.estado = Estados.Ganada;
+                return true;
             }
-            return true;
+            else
+            {
+                this.estado = Estados.Perdida;
+                this.vida = 0;
+                return false;
+            }
         }
     }
 }
