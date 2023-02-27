@@ -105,6 +105,27 @@ namespace Ahorcado.UIAutomation.StepDefinitions
             btnInsertLetter.Submit();
         }
 
+        [When(@"I entered AGILES as the PalabraIngresada")]
+        public void WhenIEnteredAGILESAsThePalabraIngresada()
+        {
+            var wordTyped = driver.FindElement(By.Id("inputword"));
+            var btnInsertWord = driver.FindElement(By.Id("IntentarPalabra"));
+            wordTyped.SendKeys("AGILES");
+            Thread.Sleep(1000);
+            btnInsertWord.Submit();
+        }
+
+        [When(@"I entered ASD as the PalabraIngresada")]
+        public void WhenIEnteredASDAsThePalabraIngresada()
+        {
+            var wordTyped = driver.FindElement(By.Id("inputword"));
+            var btnInsertWord = driver.FindElement(By.Id("IntentarPalabra"));
+            wordTyped.SendKeys("ASD");
+            Thread.Sleep(1000);
+            btnInsertWord.Submit();
+        }
+
+
         [Then(@"I should be told that I won the game")]
         public void ThenIShouldBeToldThatIWonTheGame()
         {
