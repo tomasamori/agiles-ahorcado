@@ -10,6 +10,8 @@ namespace Ahorcado.MVC.Pages
 
         [BindProperty]
         public char LetraIngresada { get; set; }
+        [BindProperty]
+        public string PalabraIngresada { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -42,6 +44,25 @@ namespace Ahorcado.MVC.Pages
             }
         }
 
+        public void OnPostPalabra()
+        {
+            AhorcadoClase partida = AhorcadoJuego.GetPartidaActual;
+            if (partida.getVida() > 0)
+            {
+                if (partida.estado == AhorcadoClase.Estados.Jugando)
+                {
+                    partida.ValidarPalabra(PalabraIngresada);
+                }
+                else if (partida.estado == AhorcadoClase.Estados.Ganada)
+                {
+                    Response.Redirect("/");
+                }
+            }
+            else
+            {
+                Response.Redirect("/");
+            }
+        }
 
     }
 }

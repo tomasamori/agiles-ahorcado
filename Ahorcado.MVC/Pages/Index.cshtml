@@ -18,7 +18,7 @@
         <div class="col-sm">
             @if (partida.getVida() > 0)
             {
-                if (!partida.estadoPalabra.Contains('_'))
+                if (partida.estado == AhorcadoClase.Estados.Ganada)
                 {
                     <div class="column col-lg-7 hide">
                         <h2 id="win" class="mt-2">¡Ganaste!</h2>
@@ -63,6 +63,18 @@
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" id="IntentarLetra" class="btn btn-primary mb-2">Intentar Letra</button>
+                                </div>
+                            </form>
+
+                            <form class="row g-3 mt-1" asp-page-handler="palabra" method="post">
+                                <div class="col-auto">
+                                    <label for="letter" class="visually-hidden">Arriesgar palabra:</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input name="PalabraIngresada" type="text" class="form-control" id="inputword" placeholder="" required>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" id="IntentarPalabra" class="btn btn-primary mb-2">Intentar Palabra</button>
                                 </div>
                             </form>
                         </div>
