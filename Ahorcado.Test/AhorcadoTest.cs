@@ -76,5 +76,25 @@ namespace Ahorcado.Test
 
             Assert.That(ahorcado.getVida(), Is.EqualTo(6));
         }
+
+        [Test]
+        public void ValidarGanada()
+        {
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
+
+            ahorcado.ValidarPalabra("palabra");
+
+            Assert.That(ahorcado.estado, Is.EqualTo(AhorcadoClase.Estados.Ganada));
+        }
+
+        [Test]
+        public void ValidarPerdida()
+        {
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
+
+            ahorcado.ValidarPalabra("test");
+
+            Assert.That(ahorcado.estado, Is.EqualTo(AhorcadoClase.Estados.Perdida));
+        }
     }
 }
