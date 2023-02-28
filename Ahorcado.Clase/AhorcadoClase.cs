@@ -5,6 +5,7 @@ namespace Ahorcado.Clase
 {
     public class AhorcadoClase
     {
+        private const int VIDAS = 7;
         public string palabra;
         public int vida;
         public List<char> letrasCorrectas;
@@ -13,10 +14,10 @@ namespace Ahorcado.Clase
         public enum Estados { Jugando, Ganada, Perdida }
         public Estados estado { get; set; }
 
-        public AhorcadoClase(string palabra, int vida)
+        public AhorcadoClase(string palabra)
         {
             this.palabra = palabra.ToLower();
-            this.vida = vida;
+            this.vida = VIDAS;
             this.estadoPalabra = "";
             this.estado = Estados.Jugando;
             for (int i = 0; i < this.palabra.Length; i++)

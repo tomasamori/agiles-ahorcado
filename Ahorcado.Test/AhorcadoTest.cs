@@ -12,7 +12,7 @@ namespace Ahorcado.Test
         [Test]
         public void ValidarLetraCorrecta()
         {
-            AhorcadoClase ahorcado = new AhorcadoClase("palabra", 7);
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
             Assert.That(ahorcado.adivinarLetra('a'), Is.EqualTo("Acierto"));
         }
@@ -20,7 +20,7 @@ namespace Ahorcado.Test
         [Test]
         public void ValidarLetraMayusculaCorrecta()
         {
-            AhorcadoClase ahorcado = new AhorcadoClase("palabra", 7);
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
             Assert.That(ahorcado.adivinarLetra('A'), Is.EqualTo("Acierto"));
         }
@@ -28,7 +28,7 @@ namespace Ahorcado.Test
         [Test]
         public void ValidarLetraIncorrecta()
         {
-            AhorcadoClase ahorcado = new AhorcadoClase("palabra", 7);
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
             Assert.That(ahorcado.adivinarLetra('k'), Is.EqualTo("Letra incorrecta"));
         }
@@ -36,7 +36,7 @@ namespace Ahorcado.Test
         [Test]
         public void ValidarLetraIncorrectaMayuscula()
         {
-            AhorcadoClase ahorcado = new AhorcadoClase("palabra", 7);
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
             Assert.That(ahorcado.adivinarLetra('K'), Is.EqualTo("Letra incorrecta"));
         }
@@ -44,7 +44,7 @@ namespace Ahorcado.Test
         [Test]
         public void ValidarEspacioBlanco()
         {
-            AhorcadoClase ahorcado = new AhorcadoClase("palabra", 7);
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
             Assert.That(ahorcado.adivinarLetra(' '), Is.EqualTo("Debe ingresar una letra valida"));
         }
@@ -52,7 +52,7 @@ namespace Ahorcado.Test
         [Test]
         public void ValidarComa()
         {
-            AhorcadoClase ahorcado = new AhorcadoClase("palabra", 7);
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
             Assert.That(ahorcado.adivinarLetra(','), Is.EqualTo("Debe ingresar una letra valida"));
         }
@@ -60,7 +60,7 @@ namespace Ahorcado.Test
         [Test]
         public void ValidarEstadoPalabra()
         {
-            AhorcadoClase ahorcado = new AhorcadoClase("palabra", 7);
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
             ahorcado.adivinarLetra('a');
 
@@ -70,7 +70,7 @@ namespace Ahorcado.Test
         [Test]
         public void ValidarQuitarVida()
         {
-            AhorcadoClase ahorcado = new AhorcadoClase("palabra", 7);
+            AhorcadoClase ahorcado = new AhorcadoClase("palabra");
             
             ahorcado.adivinarLetra('e');
 

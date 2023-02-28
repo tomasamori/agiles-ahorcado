@@ -20,12 +20,12 @@ namespace Ahorcado.Clase
 
         public static void Inicializar()
         {
-            PartidaActual = new AhorcadoClase(AhorcadoAuxiliares.PalabraAleatoria(), 7);
+            PartidaActual = new AhorcadoClase(AhorcadoAuxiliares.PalabraAleatoria());
         }
 
         public static void Inicializar(string palabra)
         {
-            PartidaActual = new AhorcadoClase(palabra, 7);
+            PartidaActual = new AhorcadoClase(palabra);
         }
     }
 }
