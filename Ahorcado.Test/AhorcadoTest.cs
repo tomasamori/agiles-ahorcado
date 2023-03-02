@@ -14,7 +14,7 @@ namespace Ahorcado.Test
         {
             AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
-            Assert.That(ahorcado.adivinarLetra('a'), Is.EqualTo("asda"));
+          Assert.That(ahorcado.adivinarLetra('a'), Is.EqualTo("Acierto"));
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace Ahorcado.Test
         {
             AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
-            Assert.That(ahorcado.adivinarLetra('A'), Is.EqualTo("dsfdsfsd"));
+            Assert.That(ahorcado.adivinarLetra('A'), Is.EqualTo("Acierto"));
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace Ahorcado.Test
         {
             AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
-            Assert.That(ahorcado.adivinarLetra('k'), Is.EqualTo("Letra gfdgdf"));
+            Assert.That(ahorcado.adivinarLetra('k'), Is.EqualTo("Letra incorrecta"));
         }
 
         [Test]
