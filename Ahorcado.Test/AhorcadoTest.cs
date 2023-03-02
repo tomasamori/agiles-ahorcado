@@ -14,7 +14,7 @@ namespace Ahorcado.Test
         {
             AhorcadoClase ahorcado = new AhorcadoClase("palabra");
 
-          Assert.That(ahorcado.adivinarLetra('a'), Is.EqualTo("Acierto"));
+            Assert.That(ahorcado.adivinarLetra('a'), Is.EqualTo("Acierto"));
         }
 
         [Test]
